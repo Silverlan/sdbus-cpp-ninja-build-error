@@ -20,10 +20,13 @@ jobs:
         run: |
           git clone --depth=1 https://github.com/Kistler-Group/sdbus-cpp.git
 
-      - name: Install libcap-dev
+      - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libcap-dev
+          sudo apt-get install -y \
+            libcap-dev \
+            meson \
+            ninja-build
 
       - name: Configure with CMake
         run: |
