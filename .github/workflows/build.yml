@@ -27,7 +27,7 @@ jobs:
             libcap-dev \
             meson \
             ninja-build
-          sudo apt-get install -y meson ninja-build libcap-dev libmount-dev m4 gperf
+          sudo apt-get install -y gperf
 
       - name: Configure with CMake
         run: |
