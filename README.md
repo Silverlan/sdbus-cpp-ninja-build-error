@@ -1,0 +1,1 @@
+# sdbus-cpp-ninja-build-error
