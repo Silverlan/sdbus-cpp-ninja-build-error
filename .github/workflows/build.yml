@@ -1,0 +1,39 @@
+# .github/workflows/build.yml
+name: CMake Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    name: Build on Ubuntu Latest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Clone sdbus-cpp
+        run: |
+          git clone --depth=1 https://github.com/Kistler-Group/sdbus-cpp.git
+
+      - name: Install libcap-dev
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcap-dev
+
+      - name: Configure with CMake
+        run: |
+          mkdir -p build
+          cd build
+          cmake .. \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DSDBUSCPP_BUILD_LIBSYSTEMD=ON
+
+      - name: Build
+        run: |
+          cd build
+          cmake --build .
